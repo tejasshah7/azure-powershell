@@ -20,7 +20,7 @@
 
 ## Upcoming Release
 * Fixed incorrect type of SuccessThresholdRoundTripTimeMs parameter for New-AzNetworkWatcherConnectionMonitorTestConfigurationObject
-* Add `DNSEnableProxy`, 'DNSRequireProxyForNetworkRules' and 'DNSServers' parameters to `AzureFirewall`
+* Add `EnableDnsProxy`, 'DisableDnsProxyForNetworkRule' and 'DnsServer' parameters to `AzureFirewall`
     - Updated cmdlet:
         - New-AzFirewall
 
