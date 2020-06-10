@@ -77,7 +77,7 @@ namespace Microsoft.Azure.Commands.Network
                 Action = new PSAzureFirewallPolicyNatRuleCollectionAction { Type = ActionType },
                 TranslatedAddress = this.TranslatedAddress,
                 TranslatedPort = this.TranslatedPort,
-                RuleCollectionType = "FirewallPolicyNatRule"
+                RuleCollectionType = "FirewallPolicyNatRuleCollection"
             };
 
             WriteObject(natRuleCollections);
