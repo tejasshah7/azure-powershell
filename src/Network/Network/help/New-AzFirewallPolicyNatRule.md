@@ -15,7 +15,7 @@ Create a new Azure Firewall Policy NAT Rule
 ```
 New-AzFirewallPolicyNatRule -Name <String> [-Description <String>] -SourceAddress <String[]>
  [-SourceIpGroup <String[]>] -DestinationAddress <String[]> -DestinationPort <String[]>
- -Protocols <String[]> -TranslatedAddress <String>
+ -Protocols <String[]> [-TranslatedAddress <String>] [-TranslatedFqdn <String>]
  -TranslatedPort <String> [-DefaultProfile <IAzureContextContainer>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -30,6 +30,13 @@ PS C:\> New-AzFirewallPolicyNatRule -Name NatRule1 -Protocol "TCP" -SourceAddres
 ```
 
 This example creates a NAT rule with the source address, protocol, destination address, destination port, translated address, and translated port.
+
+### Example 2
+```powershell
+PS C:\> New-AzFirewallPolicyNatRule -Name NatRule1 -Protocol "TCP" -SourceAddress "192.168.0.0/16" -DestinationAddress 10.20.30.40 -DestinationPort 1000 -TranslatedFqdn "internalhttp.server.net" -TranslatedPort "100"
+```
+
+This example creates a NAT rule with the source address, protocol, destination address, destination port, translated fqdn, and translated port.
 
 ## PARAMETERS
 
@@ -163,6 +170,21 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TranslatedFqdn
+The translated FQDN for this NAT rule
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
