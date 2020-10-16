@@ -73,5 +73,29 @@ namespace Commands.Network.Test.ScenarioTests
         {
             TestRunner.RunTestScript("Test-AzureFirewallPolicyCRUDWithNatRuleTranslatedFQDN");
         }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        [Trait(Category.Owner, NrpTeamAlias.azurefirewall)]
+        public void TestAzureFirewallPolicyPremiumWithTerminateTLSEnabled()
+        {
+            TestRunner.RunTestScript("Test-AzureFirewallPolicyPremiumWithTerminateTLSEnabled");
+        }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        [Trait(Category.Owner, NrpTeamAlias.azurefirewall)]
+        public void TestAzureFirewallPolicyPremiumWithTerminateTLSDisabledAndTargetUrls()
+        {
+            TestRunner.RunTestScript("Test-AzureFirewallPolicyPremiumWithTerminateTLSDisabledAndTargetUrls");
+        }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        [Trait(Category.Owner, NrpTeamAlias.azurefirewall)]
+        public void TestAzureFirewallPolicyPremiumWithTerminateTLSEnabledAndTargetUrls()
+        {
+            TestRunner.RunTestScript("Test-AzureFirewallPolicyPremiumWithTerminateTLSEnabledAndTargetUrls");
+        }
     }
 }

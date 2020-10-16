@@ -48,6 +48,10 @@ namespace Microsoft.Azure.Commands.Network
             Mandatory = true,
             ParameterSetName = AzureFirewallPolicyApplicationRuleParameterSets.SourceAddressAndFqdnTag,
             HelpMessage = "The source addresses of the rule. Either SourceAddress or SourceIpGroup must be present.")]
+        [Parameter(
+            Mandatory = true,
+            ParameterSetName = AzureFirewallPolicyApplicationRuleParameterSets.SourceAddressAndTargetUrl,
+            HelpMessage = "The source addresses of the rule. Either SourceAddress or SourceIpGroup must be present.")]
         [ValidateNotNullOrEmpty]
         public string[] SourceAddress { get; set; }
 
@@ -58,6 +62,10 @@ namespace Microsoft.Azure.Commands.Network
         [Parameter(
             Mandatory = true,
             ParameterSetName = AzureFirewallPolicyApplicationRuleParameterSets.SourceIpGroupAndFqdnTag,
+            HelpMessage = "The source addresses of the rule. Either SourceAddress or SourceIpGroup must be present.")]
+        [Parameter(
+            Mandatory = true,
+            ParameterSetName = AzureFirewallPolicyApplicationRuleParameterSets.SourceIpGroupAndTargetUrl,
             HelpMessage = "The source addresses of the rule. Either SourceAddress or SourceIpGroup must be present.")]
         [ValidateNotNullOrEmpty]
         public string[] SourceIpGroup { get; set; }
@@ -92,8 +100,33 @@ namespace Microsoft.Azure.Commands.Network
             Mandatory = true,
             ParameterSetName = AzureFirewallPolicyApplicationRuleParameterSets.SourceIpGroupAndTargetFqdn,
             HelpMessage = "The protocols of the rule")]
+        [Parameter(
+            Mandatory = true,
+            ParameterSetName = AzureFirewallPolicyApplicationRuleParameterSets.SourceAddressAndTargetUrl,
+            HelpMessage = "The protocols of the rule")]
+        [Parameter(
+            Mandatory = true,
+            ParameterSetName = AzureFirewallPolicyApplicationRuleParameterSets.SourceIpGroupAndTargetUrl,
+            HelpMessage = "The protocols of the rule")]
         [ValidateNotNullOrEmpty]
         public string[] Protocol { get; set; }
+
+        [Parameter(
+            Mandatory = true,
+            ParameterSetName = AzureFirewallPolicyApplicationRuleParameterSets.SourceAddressAndTargetUrl,
+            HelpMessage = "The target URLs of the rule")]
+        [Parameter(
+            Mandatory = true,
+            ParameterSetName = AzureFirewallPolicyApplicationRuleParameterSets.SourceIpGroupAndTargetUrl,
+            HelpMessage = "The target URLs of the rule")]
+        [ValidateNotNullOrEmpty]
+        public string[] TargetUrl { get; set; }
+
+        [Parameter(
+            Mandatory = false,
+            HelpMessage = "Enable Terminate TLS. By default it is disabled."
+        )]
+        public SwitchParameter TerminateTLS { get; set; }
 
         public override void Execute()
         {
@@ -115,6 +148,8 @@ namespace Microsoft.Azure.Commands.Network
                 Protocols = protocolsAsWeExpectThem,
                 TargetFqdns = this.TargetFqdn?.ToList(),
                 FqdnTags = this.FqdnTag?.ToList(),
+                TargetUrls = this.TargetUrl?.ToList(),
+                TerminateTLS = this.TerminateTLS.IsPresent? true : (bool?)null,
                 RuleType = "ApplicationRule"
             };
             WriteObject(applicationRule);
